@@ -139,9 +139,14 @@ class CarouselSliderState extends State<CarouselSlider>
               return;
             }
 
+            final currentPage = carouselState!.pageController!.page?.round();
+            if (currentPage == null) {
+              return;
+            }
+
             CarouselPageChangedReason previousReason = mode;
             changeMode(CarouselPageChangedReason.timed);
-            int nextPage = carouselState!.pageController!.page!.round() + 1;
+            int nextPage = currentPage + 1;
             int itemCount = widget.itemCount ?? widget.items!.length;
 
             if (nextPage >= itemCount &&
